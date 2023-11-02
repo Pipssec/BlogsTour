@@ -1,4 +1,4 @@
-package com.blogstour.app.ui.screen.home.model
+package com.blogstour.app.ui.screen.home.tab_buttons.model
 
 data class UiTabButton(
     val color: String,
