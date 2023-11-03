@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(): ViewModel() {
-
+    val state: List<Any> = emptyList()
 }

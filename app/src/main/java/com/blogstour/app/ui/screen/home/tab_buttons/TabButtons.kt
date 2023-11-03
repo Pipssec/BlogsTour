@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -32,8 +33,15 @@ fun TabButtonsList(
     modifier: Modifier = Modifier,
     listItems: List<UiTabButton>
 ) {
+//    ScrollableTabRow(selectedTabIndex = 0) {
+//        for (item in list){
+//            TabButtonItem(item = item)
+//        }
+//    }
     LazyRow(
-        modifier = modifier,
+        modifier = modifier
+            .wrapContentWidth()
+            .wrapContentHeight(),
         contentPadding = PaddingValues( horizontal = 8.dp)
     ) {
         items(listItems){ item ->

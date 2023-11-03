@@ -3,6 +3,10 @@ package com.blogstour.app.ui.screen.home
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -23,7 +27,7 @@ fun HomeScreen(
     isDarkTheme: Boolean = isSystemInDarkTheme(),
     vm: HomeScreenViewModel
 ) {
-
+    val size = vm.state
     AppScreen(isDarkTheme = isDarkTheme) {
         Scaffold(
             modifier = modifier,
@@ -47,6 +51,21 @@ fun HomeScreen(
 fun HomeScreenContent(
     modifier: Modifier = Modifier
 ) {
+    LazyColumn(modifier = modifier
+        .wrapContentHeight()
+        .wrapContentWidth())
+    {
+        items(listOf(1)){
+            HomeItem()
+        }
+    }
+//    HomeItem()
+}
+
+@Composable
+fun HomeItem(
+    modifier: Modifier = Modifier
+){
     Column {
         TabButtonsList(listItems = list)
         MenuItem(item = model, modifier = modifier)
