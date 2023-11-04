@@ -7,5 +7,7 @@ import retrofit2.Response
 interface ContentRepository {
     suspend fun getMainContent(): Response<MainRequestModel>
 
-    suspend fun getListContent(url: String): Response<ContentListModel>
+    suspend fun getListStandartContent(url: String): Response<ContentListModel>
+    suspend fun getListRoomsContent(url: String): Response<ContentListModel>
+    suspend fun getListToursContent(url: String): Response<ContentListModel>
 }

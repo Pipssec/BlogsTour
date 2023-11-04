@@ -1,6 +1,8 @@
 package com.blogstour.data.api
 
-import com.blogstour.data.model.contentlistdto.ContentListDTO
+import com.blogstour.data.model.contentlistdto.roomsdatamodel.RoomsContentListDTO
+import com.blogstour.data.model.contentlistdto.standartdatadto.StandartContentListDTO
+import com.blogstour.data.model.contentlistdto.tourdatamodel.ToursContentListDTO
 import com.blogstour.data.model.mainrequestdto.MainRequestDTO
 import retrofit2.Response
 import retrofit2.http.GET
@@ -15,8 +17,18 @@ interface ContentService {
     ): Response<MainRequestDTO>
 
     @GET
-    suspend fun getContent(
+    suspend fun getStandartContent(
         @Url url: String
-    ): Response<ContentListDTO>
+    ): Response<StandartContentListDTO>
+
+    @GET
+    suspend fun getRoomsContent(
+        @Url url: String
+    ): Response<RoomsContentListDTO>
+
+    @GET
+    suspend fun getToursContent(
+        @Url url: String
+    ): Response<ToursContentListDTO>
 
 }

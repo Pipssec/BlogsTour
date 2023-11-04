@@ -5,10 +5,10 @@ import com.blogstour.domain.model.contentlistmodel.ContentListModel
 import retrofit2.Response
 import javax.inject.Inject
 
-class GetListContentUseCase@Inject constructor(
+class GetListToursContentUseCase@Inject constructor(
     private val contentRepository: ContentRepository
 ) {
     suspend fun getListContent(url: String): Response<ContentListModel>{
-        return contentRepository.getListContent(url)
+        return contentRepository.getListToursContent(url)
     }
 }

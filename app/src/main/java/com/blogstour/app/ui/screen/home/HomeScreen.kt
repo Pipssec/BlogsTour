@@ -24,22 +24,27 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.blogstour.app.R
 import com.blogstour.app.ui.common.AppTopBar
+import com.blogstour.app.ui.model.testModel.TestModel
 import com.blogstour.app.ui.model.uimainrequest.UiMainRequest
-import com.blogstour.app.ui.navigation_bar.BottomNavigation
-import com.blogstour.app.ui.screen.home.main_screen.MenuItemsScreen
+import com.blogstour.app.ui.navigation_bar.BottomNavigationBar
+import com.blogstour.app.ui.screen.home.main_items_screen.MenuItemsScreen
 import com.blogstour.app.ui.screen.home.tab_buttons.TabButtonsList
 import com.blogstour.app.util.Lce
-import com.scumadmin.app.ui.screen.AppScreen
+import com.blogstour.app.ui.screen.AppScreen
 
 @Composable
 fun HomeScreen(
+    navController : NavController,
     modifier: Modifier = Modifier,
     isDarkTheme: Boolean = isSystemInDarkTheme(),
     vm: HomeScreenViewModel = hiltViewModel()
 ) {
     val state = vm.state.collectAsState()
+    val contents = vm.contentState.collectAsState()
     AppScreen(isDarkTheme = isDarkTheme) {
         Scaffold(
             modifier = modifier,
@@ -49,11 +54,11 @@ fun HomeScreen(
                 )
             },
             bottomBar = {
-                BottomNavigation()
+                BottomNavigationBar()
             }
         ) { paddings ->
             Surface(Modifier.padding(paddings)) {
-                HomeScreenContent(state = state)
+                HomeScreenContent(state = state, content = contents)
             }
         }
     }
@@ -62,17 +67,20 @@ fun HomeScreen(
 @Composable
 fun HomeScreenContent(
     modifier: Modifier = Modifier,
-    state: State<Lce<UiMainRequest>>
+    state: State<Lce<UiMainRequest>>,
+    content: State<List<TestModel>>
 ) {
     when (state.value) {
         is Lce.Content -> {
             val items = listOf((state.value as Lce.Content<UiMainRequest>).data)
-            LazyColumn(modifier = modifier
-                .wrapContentHeight()
-                .wrapContentWidth())
+            LazyColumn(
+                modifier = modifier
+                    .wrapContentHeight()
+                    .wrapContentWidth()
+            )
             {
-                items(items){ item ->
-                        HomeItem(item = item)
+                items(items) { item ->
+                    HomeItem(item = item, content = content)
                 }
             }
         }
@@ -88,7 +96,7 @@ fun HomeScreenContent(
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 CircularProgressIndicator(
                     modifier = Modifier.size(80.dp),
                     color = Color.Yellow
@@ -102,15 +110,26 @@ fun HomeScreenContent(
 @Composable
 fun HomeItem(
     modifier: Modifier = Modifier,
-    item: UiMainRequest
-){
-    val listUiContents = item.data.content
+    item: UiMainRequest,
+    content: State<List<TestModel>>
+) {
     Column {
         TabButtonsList(listItems = item.data.buttons)
-        for (i in listUiContents){
-            MenuItemsScreen(item = i, modifier = modifier)
+        if (content.value.isEmpty()) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(80.dp),
+                    color = Color.Yellow
+                )
+            }
+        } else {
+            for (item in content.value) {
+                MenuItemsScreen(item = item, modifier = modifier)
+            }
         }
-
     }
 }
 

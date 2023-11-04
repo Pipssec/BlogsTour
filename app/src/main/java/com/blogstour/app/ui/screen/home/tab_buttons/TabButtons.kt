@@ -18,12 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.blogstour.app.R
 import com.blogstour.app.ui.model.uimainrequest.UiButton
-import com.blogstour.app.ui.screen.home.tab_buttons.model.UiTabButton
-import com.blogstour.app.ui.theme.BlogsTourTheme
 import com.blogstour.app.ui.theme.g11
 import com.blogstour.app.ui.theme.g12
 import com.blogstour.app.ui.theme.g13
@@ -106,60 +103,3 @@ fun setBackgroundColor(color: String): Color {
         else -> Color.Red
     }
 }
-
-@Preview
-@Composable
-private fun TabButtonPreview(){
-    BlogsTourTheme {
-        TabButtonItem(
-            item = UiButton(
-                color = "g-13",
-                icon = "rst-weather-cloudy",
-                title = "+5°C",
-                type = "type",
-                url = "url"
-            )
-        )
-    }
-}
-
-//@Preview
-//@Composable
-//private fun TabButtonListPreview(){
-//    BlogsTourTheme {
-//        TabButtonsList(
-//            listItems = list
-//        )
-//    }
-//}
-
-val list = listOf(
-    UiTabButton(
-        color = "g-13",
-        icon = "rst-weather-cloudy",
-        title = "+5°C",
-        type = "type",
-        url = "url"
-    ),
-    UiTabButton(
-        color = "g-11",
-        icon = "rst-map_marker_path",
-        title = "Как добраться?",
-        type = "type",
-        url = "url"
-    ),
-    UiTabButton(
-        color = "g-12",
-        icon = "rst-help",
-        title = "О базе отдыха",
-        type = "type",
-        url = "url"
-    ),
-    UiTabButton(
-        color = "g-19",
-        icon = "rst-play-circle",
-        title = "3d тур",
-        type = "type",
-        url = "url"
-    )
-)
