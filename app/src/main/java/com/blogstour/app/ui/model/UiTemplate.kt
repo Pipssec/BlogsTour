@@ -1,6 +1,6 @@
-package com.blogstour.domain.model
+package com.blogstour.app.ui.model
 
-data class TemplateModel(
+data class UiTemplate(
     val card: String,
     val direction: String,
     val type: String,

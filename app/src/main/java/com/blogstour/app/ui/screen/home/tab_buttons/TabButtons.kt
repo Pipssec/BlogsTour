@@ -21,6 +21,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.blogstour.app.R
+import com.blogstour.app.ui.model.UiButton
 import com.blogstour.app.ui.screen.home.tab_buttons.model.UiTabButton
 import com.blogstour.app.ui.theme.BlogsTourTheme
 import com.blogstour.app.ui.theme.g11
@@ -31,7 +32,7 @@ import com.blogstour.app.ui.theme.g19
 @Composable
 fun TabButtonsList(
     modifier: Modifier = Modifier,
-    listItems: List<UiTabButton>
+    listItems: List<UiButton>
 ) {
 //    ScrollableTabRow(selectedTabIndex = 0) {
 //        for (item in list){
@@ -53,7 +54,7 @@ fun TabButtonsList(
 @Composable
 fun TabButtonItem(
     modifier: Modifier = Modifier,
-    item: UiTabButton
+    item: UiButton
 ) {
     TextButton(
         modifier = modifier
@@ -111,7 +112,7 @@ fun setBackgroundColor(color: String): Color {
 private fun TabButtonPreview(){
     BlogsTourTheme {
         TabButtonItem(
-            item = UiTabButton(
+            item = UiButton(
                 color = "g-13",
                 icon = "rst-weather-cloudy",
                 title = "+5°C",
@@ -122,15 +123,15 @@ private fun TabButtonPreview(){
     }
 }
 
-@Preview
-@Composable
-private fun TabButtonListPreview(){
-    BlogsTourTheme {
-        TabButtonsList(
-            listItems = list
-        )
-    }
-}
+//@Preview
+//@Composable
+//private fun TabButtonListPreview(){
+//    BlogsTourTheme {
+//        TabButtonsList(
+//            listItems = list
+//        )
+//    }
+//}
 
 val list = listOf(
     UiTabButton(

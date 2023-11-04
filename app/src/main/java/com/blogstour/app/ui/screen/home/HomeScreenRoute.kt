@@ -1,6 +1,6 @@
 package com.blogstour.app.ui.screen.home
 
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -17,7 +17,7 @@ fun NavGraphBuilder.homeScreenDestination(
     onBack: () -> Unit,
 ) {
     composable(HomeScreenRoute.route) { stackEntry ->
-        val vm: HomeScreenViewModel = viewModel(viewModelStoreOwner = stackEntry)
+        val vm: HomeScreenViewModel = hiltViewModel(viewModelStoreOwner = stackEntry)
         HomeScreen(
             vm = vm,
         )

@@ -17,33 +17,21 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.rememberAsyncImagePainter
+import com.blogstour.app.ui.model.UiContent
 import com.blogstour.app.ui.screen.home.main_screen.model.uiblog.Date
 import com.blogstour.app.ui.screen.home.main_screen.model.uiblog.ImageUrl
 import com.blogstour.app.ui.screen.home.main_screen.model.uiblog.UiBlogContent
-import com.blogstour.app.ui.screen.home.main_screen.model.uimenu.Template
-import com.blogstour.app.ui.screen.home.main_screen.model.uimenu.UiMenuContent
-import com.blogstour.app.ui.theme.BlogsTourTheme
 
 
 @Composable
-fun MainScreen(
-    modifier: Modifier = Modifier
-) {
-    Column() {
-
-    }
-}
-
-@Composable
-fun MenuItem(
+fun MenuItemsScreen(
     modifier: Modifier = Modifier,
-    item: UiMenuContent
+    item: UiContent
 ) {
     Column(
         modifier = modifier
@@ -140,21 +128,21 @@ fun ContentItem(
     }
 }
 
-@Preview
-@Composable
-private fun MenuItemPreview() {
-    BlogsTourTheme {
-        MenuItem(
-            item = model
-        )
-    }
-}
-
-val model = UiMenuContent(
-    title = "Блог",
-    url = "url",
-    template = Template()
-)
+//@Preview
+//@Composable
+//private fun MenuItemPreview() {
+//    BlogsTourTheme {
+//        MenuItem(
+//            item = model
+//        )
+//    }
+//}
+//
+//val model = UiContent(
+//    title = "Блог",
+//    url = "url",
+//    template = UiTemplate()
+//)
 
 val listBlogs = listOf(
     UiBlogContent(
