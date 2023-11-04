@@ -1,13 +1,13 @@
 package com.blogstour.app.util.mapper
 
-import com.blogstour.app.ui.model.UiButton
-import com.blogstour.app.ui.model.UiContent
-import com.blogstour.app.ui.model.UiData
-import com.blogstour.app.ui.model.UiMainRequest
-import com.blogstour.app.ui.model.UiTemplate
-import com.blogstour.domain.model.ButtonModel
-import com.blogstour.domain.model.ContentModel
-import com.blogstour.domain.model.MainRequestModel
+import com.blogstour.app.ui.model.uimainrequest.UiButton
+import com.blogstour.app.ui.model.uimainrequest.UiContent
+import com.blogstour.app.ui.model.uimainrequest.UiData
+import com.blogstour.app.ui.model.uimainrequest.UiMainRequest
+import com.blogstour.app.ui.model.uimainrequest.UiTemplate
+import com.blogstour.domain.model.mainrequestmodel.ButtonModel
+import com.blogstour.domain.model.mainrequestmodel.ContentModel
+import com.blogstour.domain.model.mainrequestmodel.MainRequestModel
 import javax.inject.Inject
 
 class MainRequestDomainToUiMapper @Inject constructor() {

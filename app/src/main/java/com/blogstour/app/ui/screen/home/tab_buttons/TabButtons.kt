@@ -21,7 +21,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.blogstour.app.R
-import com.blogstour.app.ui.model.UiButton
+import com.blogstour.app.ui.model.uimainrequest.UiButton
 import com.blogstour.app.ui.screen.home.tab_buttons.model.UiTabButton
 import com.blogstour.app.ui.theme.BlogsTourTheme
 import com.blogstour.app.ui.theme.g11

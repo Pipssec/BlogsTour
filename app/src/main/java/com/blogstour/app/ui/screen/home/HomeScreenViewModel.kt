@@ -2,12 +2,13 @@ package com.blogstour.app.ui.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.blogstour.app.ui.model.UiMainRequest
+import com.blogstour.app.ui.model.uimainrequest.UiMainRequest
 import com.blogstour.app.util.AppException
 import com.blogstour.app.util.Lce
 import com.blogstour.app.util.mapper.MainRequestDomainToUiMapper
 import com.blogstour.domain.usecase.GetMainContentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -25,11 +26,11 @@ class HomeScreenViewModel @Inject constructor(
 
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
 
             _state.value = Lce.Loading
 
-            val result = getMainContent.getContent()
+            val result = getMainContent.getMainContent()
 
             val body = result.body()
             if (result.isSuccessful && body != null) {

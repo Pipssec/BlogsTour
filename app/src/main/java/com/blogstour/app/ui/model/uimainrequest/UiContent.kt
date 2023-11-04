@@ -1,4 +1,4 @@
-package com.blogstour.app.ui.model
+package com.blogstour.app.ui.model.uimainrequest
 
 data class UiContent(
     val template: UiTemplate,

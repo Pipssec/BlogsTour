@@ -1,4 +1,4 @@
-package com.blogstour.domain.model
+package com.blogstour.domain.model.mainrequestmodel
 
 data class ContentModel(
     val template: TemplateModel,

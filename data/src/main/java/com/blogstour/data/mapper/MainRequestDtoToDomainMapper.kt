@@ -1,13 +1,13 @@
 package com.blogstour.data.mapper
 
-import com.blogstour.data.model.ButtonDTO
-import com.blogstour.data.model.ContentDTO
-import com.blogstour.data.model.MainRequestDTO
-import com.blogstour.domain.model.ButtonModel
-import com.blogstour.domain.model.ContentModel
-import com.blogstour.domain.model.DataModel
-import com.blogstour.domain.model.MainRequestModel
-import com.blogstour.domain.model.TemplateModel
+import com.blogstour.data.model.mainrequestdto.ButtonDTO
+import com.blogstour.data.model.mainrequestdto.ContentDTO
+import com.blogstour.data.model.mainrequestdto.MainRequestDTO
+import com.blogstour.domain.model.mainrequestmodel.ButtonModel
+import com.blogstour.domain.model.mainrequestmodel.ContentModel
+import com.blogstour.domain.model.mainrequestmodel.DataModel
+import com.blogstour.domain.model.mainrequestmodel.MainRequestModel
+import com.blogstour.domain.model.mainrequestmodel.TemplateModel
 import javax.inject.Inject
 
 class MainRequestDtoToDomainMapper @Inject constructor() {

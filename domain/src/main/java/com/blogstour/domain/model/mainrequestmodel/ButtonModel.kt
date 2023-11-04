@@ -1,6 +1,6 @@
-package com.blogstour.data.model
+package com.blogstour.domain.model.mainrequestmodel
 
-data class ButtonDTO(
+data class ButtonModel(
     val color: String,
     val icon: String,
     val title: String,

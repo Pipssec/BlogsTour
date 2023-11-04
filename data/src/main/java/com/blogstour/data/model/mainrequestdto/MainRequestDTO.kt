@@ -1,4 +1,4 @@
-package com.blogstour.data.model
+package com.blogstour.data.model.mainrequestdto
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

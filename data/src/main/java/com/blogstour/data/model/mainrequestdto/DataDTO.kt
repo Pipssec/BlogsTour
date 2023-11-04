@@ -1,4 +1,4 @@
-package com.blogstour.data.model
+package com.blogstour.data.model.mainrequestdto
 
 data class DataDTO(
     val buttons: List<ButtonDTO>,

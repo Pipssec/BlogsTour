@@ -19,10 +19,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.rememberAsyncImagePainter
-import com.blogstour.app.ui.model.UiContent
+import com.blogstour.app.ui.model.uimainrequest.UiContent
 import com.blogstour.app.ui.screen.home.main_screen.model.uiblog.Date
 import com.blogstour.app.ui.screen.home.main_screen.model.uiblog.ImageUrl
 import com.blogstour.app.ui.screen.home.main_screen.model.uiblog.UiBlogContent
@@ -31,7 +32,8 @@ import com.blogstour.app.ui.screen.home.main_screen.model.uiblog.UiBlogContent
 @Composable
 fun MenuItemsScreen(
     modifier: Modifier = Modifier,
-    item: UiContent
+    item: UiContent,
+    vm: MainScreenViewModel = hiltViewModel()
 ) {
     Column(
         modifier = modifier

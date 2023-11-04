@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.blogstour.app.R
 import com.blogstour.app.ui.common.AppTopBar
-import com.blogstour.app.ui.model.UiMainRequest
+import com.blogstour.app.ui.model.uimainrequest.UiMainRequest
 import com.blogstour.app.ui.navigation_bar.BottomNavigation
 import com.blogstour.app.ui.screen.home.main_screen.MenuItemsScreen
 import com.blogstour.app.ui.screen.home.tab_buttons.TabButtonsList
