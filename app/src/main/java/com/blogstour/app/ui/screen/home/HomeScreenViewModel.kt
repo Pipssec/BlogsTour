@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blogstour.app.ui.model.testModel.TestModel
-import com.blogstour.app.ui.model.uimainrequest.UiContent
-import com.blogstour.app.ui.model.uimainrequest.UiMainRequest
+import com.blogstour.app.ui.model.uimainrequestmodel.UiContent
+import com.blogstour.app.ui.model.uimainrequestmodel.UiMainRequest
 import com.blogstour.app.util.AppException
 import com.blogstour.app.util.Lce
 import com.blogstour.app.util.mapper.ContentListDomainToUiMapper

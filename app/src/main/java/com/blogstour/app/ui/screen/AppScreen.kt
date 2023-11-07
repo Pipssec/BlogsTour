@@ -21,6 +21,7 @@ fun AppScreen(
                     Color.Transparent
                 }else Color.Black
             )
+            systemUiController.isStatusBarVisible = false
         }
         content()
     }

@@ -1,4 +1,4 @@
-package com.blogstour.app.ui.model.uicontentlist
+package com.blogstour.app.ui.model
 
 data class UiImageList(
     val lg: String,

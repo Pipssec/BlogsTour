@@ -12,30 +12,34 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.blogstour.app.R
-import com.blogstour.app.ui.common.AppTopBar
 import com.blogstour.app.ui.model.testModel.TestModel
-import com.blogstour.app.ui.model.uimainrequest.UiMainRequest
+import com.blogstour.app.ui.model.uimainrequestmodel.UiMainRequest
 import com.blogstour.app.ui.navigation_bar.BottomNavigationBar
+import com.blogstour.app.ui.screen.AppScreen
 import com.blogstour.app.ui.screen.home.main_items_screen.MenuItemsScreen
 import com.blogstour.app.ui.screen.home.tab_buttons.TabButtonsList
 import com.blogstour.app.util.Lce
-import com.blogstour.app.ui.screen.AppScreen
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     navController : NavController,
@@ -43,14 +47,20 @@ fun HomeScreen(
     isDarkTheme: Boolean = isSystemInDarkTheme(),
     vm: HomeScreenViewModel = hiltViewModel()
 ) {
-    val state = vm.state.collectAsState()
-    val contents = vm.contentState.collectAsState()
+    val state by vm.state.collectAsState()
+    val contents by vm.contentState.collectAsState()
     AppScreen(isDarkTheme = isDarkTheme) {
         Scaffold(
             modifier = modifier,
             topBar = {
-                AppTopBar(
-                    title = stringResource(R.string.home)
+                TopAppBar(
+                    modifier = Modifier
+                        .shadow(3.dp),
+                    title = {
+                        Text(
+                            text = stringResource(id = R.string.home),
+                            style = MaterialTheme.typography.titleLarge
+                        ) },
                 )
             },
             bottomBar = {
@@ -58,7 +68,7 @@ fun HomeScreen(
             }
         ) { paddings ->
             Surface(Modifier.padding(paddings)) {
-                HomeScreenContent(state = state, content = contents)
+                HomeScreenContent(state = state, content = contents, navController = navController)
             }
         }
     }
@@ -67,12 +77,13 @@ fun HomeScreen(
 @Composable
 fun HomeScreenContent(
     modifier: Modifier = Modifier,
-    state: State<Lce<UiMainRequest>>,
-    content: State<List<TestModel>>
+    state: Lce<UiMainRequest>,
+    navController : NavController,
+    content: List<TestModel>
 ) {
-    when (state.value) {
+    when (state) {
         is Lce.Content -> {
-            val items = listOf((state.value as Lce.Content<UiMainRequest>).data)
+            val items = listOf(state.data)
             LazyColumn(
                 modifier = modifier
                     .wrapContentHeight()
@@ -80,7 +91,7 @@ fun HomeScreenContent(
             )
             {
                 items(items) { item ->
-                    HomeItem(item = item, content = content)
+                    HomeItem(items = item, navController = navController, content = content)
                 }
             }
         }
@@ -110,12 +121,13 @@ fun HomeScreenContent(
 @Composable
 fun HomeItem(
     modifier: Modifier = Modifier,
-    item: UiMainRequest,
-    content: State<List<TestModel>>
+    items: UiMainRequest,
+    content: List<TestModel>,
+    navController : NavController,
 ) {
     Column {
-        TabButtonsList(listItems = item.data.buttons)
-        if (content.value.isEmpty()) {
+        TabButtonsList(listItems = items.data.buttons)
+        if (content.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
@@ -126,8 +138,8 @@ fun HomeItem(
                 )
             }
         } else {
-            for (item in content.value) {
-                MenuItemsScreen(item = item, modifier = modifier)
+            for (item in content) {
+                MenuItemsScreen(item = item, modifier = modifier, navController = navController)
             }
         }
     }

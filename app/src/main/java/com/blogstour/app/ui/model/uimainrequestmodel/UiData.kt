@@ -1,4 +1,4 @@
-package com.blogstour.app.ui.model.uimainrequest
+package com.blogstour.app.ui.model.uimainrequestmodel
 
 data class UiData(
     val buttons: List<UiButton>,

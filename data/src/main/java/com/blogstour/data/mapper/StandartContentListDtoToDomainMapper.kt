@@ -4,7 +4,7 @@ import com.blogstour.data.model.contentlistdto.standartdatadto.StandartContentLi
 import com.blogstour.data.model.contentlistdto.standartdatadto.StandartDataDTO
 import com.blogstour.domain.model.contentlistmodel.ContentListModel
 import com.blogstour.domain.model.contentlistmodel.DataListModel
-import com.blogstour.domain.model.contentlistmodel.ImageListModel
+import com.blogstour.domain.model.ImageListModel
 import javax.inject.Inject
 
 class StandartContentListDtoToDomainMapper @Inject constructor() {

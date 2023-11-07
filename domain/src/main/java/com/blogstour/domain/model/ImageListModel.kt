@@ -1,4 +1,4 @@
-package com.blogstour.domain.model.contentlistmodel
+package com.blogstour.domain.model
 
 data class ImageListModel(
     val lg: String,

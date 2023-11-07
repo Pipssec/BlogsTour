@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.blogstour.app.R
-import com.blogstour.app.ui.model.uimainrequest.UiButton
+import com.blogstour.app.ui.model.uimainrequestmodel.UiButton
 import com.blogstour.app.ui.theme.g11
 import com.blogstour.app.ui.theme.g12
 import com.blogstour.app.ui.theme.g13

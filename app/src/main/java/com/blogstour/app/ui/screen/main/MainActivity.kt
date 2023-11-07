@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.blogstour.app.ui.screen.details.DetailsScreen
 import com.blogstour.app.ui.screen.home.HomeScreen
 import com.blogstour.app.ui.theme.BlogsTourTheme
 import com.blogstour.app.util.NavDestinations
@@ -25,12 +26,13 @@ class MainActivity : ComponentActivity() {
                     composable(NavDestinations.MAIN_SCREEN) {
                         HomeScreen(navController = navController)
                     }
-                    composable("${NavDestinations.DETAIL_SCREEN}/{newsId}") {
-//                        it.arguments?.getString("newsId")?.toInt()?.let { newsId ->
-//                            DetailScreen(newsId, navController)
+                    composable("${NavDestinations.DETAIL_SCREEN}/{blogId}") {
+                        it.arguments?.getString("blogId")?.toInt()?.let { blogId ->
+                            DetailsScreen(id = blogId, navController = navController)
+                        }
                     }
-                }
 
+                }
             }
         }
     }

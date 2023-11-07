@@ -1,6 +1,6 @@
 package com.blogstour.data.model.contentlistdto.roomsdatamodel
 
-import com.blogstour.data.model.contentlistdto.ImageListDTO
+import com.blogstour.data.model.ImageListDTO
 import com.blogstour.data.model.contentlistdto.tourdatamodel.Date
 import com.blogstour.data.model.contentlistdto.tourdatamodel.Duration
 import com.blogstour.data.model.contentlistdto.tourdatamodel.Price

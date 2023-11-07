@@ -1,11 +1,12 @@
 package com.blogstour.data
 
 import com.blogstour.data.api.ContentService
+import com.blogstour.data.mapper.DetailContentDtoToDomainMapper
 import com.blogstour.data.mapper.MainRequestDtoToDomainMapper
 import com.blogstour.data.mapper.RoomsContentListDtoToDomainMapper
 import com.blogstour.data.mapper.StandartContentListDtoToDomainMapper
 import com.blogstour.data.mapper.ToursContentListDtoToDomainMapper
-import com.blogstour.data.model.mainrequestdto.MainRequestDTO
+import com.blogstour.domain.model.detailcontentdto.DetailContentModel
 import com.blogstour.domain.ContentRepository
 import com.blogstour.domain.model.contentlistmodel.ContentListModel
 import com.blogstour.domain.model.mainrequestmodel.MainRequestModel
@@ -16,6 +17,7 @@ import javax.inject.Inject
 class ContentRepositoryImpl@Inject constructor(
     private val contentService: ContentService,
     private val mapperMainRequest: MainRequestDtoToDomainMapper,
+    private val mapperDetailContent: DetailContentDtoToDomainMapper,
     private val mapperStandartContentList: StandartContentListDtoToDomainMapper,
     private val mapperRoomsContentList: RoomsContentListDtoToDomainMapper,
     private val mapperToursContentList: ToursContentListDtoToDomainMapper,
@@ -40,12 +42,9 @@ class ContentRepositoryImpl@Inject constructor(
         return mapperDtoToDomain(result) { mapperToursContentList(it) }
     }
 
-    private fun mapMainRequestDtoToDomain(result: Response<MainRequestDTO>): Response<MainRequestModel> {
-        return if (result.isSuccessful) {
-            Response.success(result.body()?.let { mapperMainRequest(it) })
-        } else {
-            Response.error(result.code(), result.errorBody() ?: result.message().toResponseBody())
-        }
+    override suspend fun getDetailContent(id: Int): Response<DetailContentModel> {
+        val result = contentService.getBlogInfo(blogId = id)
+        return mapperDtoToDomain(result) { mapperDetailContent(it) }
     }
 
     private inline fun <T, E> mapperDtoToDomain(result: Response<T>, mapper: (T)->E): Response<E> {

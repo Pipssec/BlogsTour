@@ -1,4 +1,4 @@
-package com.blogstour.data.model.contentlistdto
+package com.blogstour.data.model
 
 data class ImageListDTO(
     val lg: String,

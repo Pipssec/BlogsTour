@@ -1,8 +1,8 @@
 package com.blogstour.app.util.mapper
 
-import com.blogstour.app.ui.model.uicontentlist.UiContentList
-import com.blogstour.app.ui.model.uicontentlist.UiDataList
-import com.blogstour.app.ui.model.uicontentlist.UiImageList
+import com.blogstour.app.ui.model.uicontentlistmodel.UiContentList
+import com.blogstour.app.ui.model.uicontentlistmodel.UiData
+import com.blogstour.app.ui.model.UiImageList
 import com.blogstour.domain.model.contentlistmodel.ContentListModel
 import com.blogstour.domain.model.contentlistmodel.DataListModel
 import javax.inject.Inject
@@ -15,7 +15,7 @@ class ContentListDomainToUiMapper @Inject constructor() {
         time = dto.time
     )
 
-    private fun isType(data: DataListModel): UiDataList {
+    private fun isType(data: DataListModel): UiData {
         return when (data) {
             is DataListModel.StandartDataListModel -> mapStandartDataDomainToModel(data)
             is DataListModel.RoomsDataListModel -> mapRoomsDataDomainToModel(data)
@@ -24,19 +24,19 @@ class ContentListDomainToUiMapper @Inject constructor() {
     }
 
     private fun mapStandartDataDomainToModel(data: DataListModel.StandartDataListModel) =
-        UiDataList.UiStandartDataList(
+        UiData.UiStandartData(
             id = data.id,
             image = UiImageList(
                 lg = data.image.lg,
                 md = data.image.md,
                 sm = data.image.sm
             ),
-            subtitle = data.subtitle ?: "subtitle",
+            subtitle = data.subtitle ?: "",
             title = data.title,
         )
 
     private fun mapToursDataDomainToModel(data: DataListModel.ToursDataListModel ) =
-        UiDataList.UiToursDataList(
+        UiData.UiToursData(
             id = data.id,
             image = UiImageList(
                 lg = data.image.lg,
@@ -48,7 +48,7 @@ class ContentListDomainToUiMapper @Inject constructor() {
         )
 
     private fun mapRoomsDataDomainToModel(data: DataListModel.RoomsDataListModel) =
-        UiDataList.UiRoomsDataList(
+        UiData.UiRoomsData(
             id = data.id,
             image = UiImageList(
                 lg = data.image.lg,

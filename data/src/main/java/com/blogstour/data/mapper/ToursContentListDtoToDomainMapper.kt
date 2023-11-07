@@ -4,7 +4,7 @@ import com.blogstour.data.model.contentlistdto.tourdatamodel.ToursContentListDTO
 import com.blogstour.data.model.contentlistdto.tourdatamodel.ToursDataDTO
 import com.blogstour.domain.model.contentlistmodel.ContentListModel
 import com.blogstour.domain.model.contentlistmodel.DataListModel
-import com.blogstour.domain.model.contentlistmodel.ImageListModel
+import com.blogstour.domain.model.ImageListModel
 import javax.inject.Inject
 
 class ToursContentListDtoToDomainMapper @Inject constructor() {

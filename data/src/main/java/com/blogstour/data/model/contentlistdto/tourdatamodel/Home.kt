@@ -1,6 +1,6 @@
 package com.blogstour.data.model.contentlistdto.tourdatamodel
 
-import com.blogstour.data.model.contentlistdto.ImageListDTO
+import com.blogstour.data.model.ImageListDTO
 
 data class Home(
     val base: Base,

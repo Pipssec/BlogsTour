@@ -1,5 +1,7 @@
 package com.blogstour.domain.model.contentlistmodel
 
+import com.blogstour.domain.model.ImageListModel
+
 sealed class DataListModel() {
     data class StandartDataListModel(
         val id: Int,
