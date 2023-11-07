@@ -4,8 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.blogstour.app.ui.screen.details.DetailsScreen
+import com.blogstour.app.ui.screen.home.HomeScreen
 import com.blogstour.app.ui.theme.BlogsTourTheme
+import com.blogstour.app.app.navigation.NavDestinations
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,23 +19,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             BlogsTourTheme {
                 val navController = rememberNavController()
-                val onBackClicked = {
-                    if (!navController.popBackStack()) {
-                        finish()
-                    }
-                }
-
                 NavHost(
                     navController = navController,
-                    startDestination = MainNavGraph.ROUTE,
+                    startDestination = NavDestinations.MAIN_SCREEN,
                 ) {
-                    mainNavGraph(
-                        navController = navController,
-                        onBack = onBackClicked,
-                    )
-                }
+                    composable(NavDestinations.MAIN_SCREEN) {
+                        HomeScreen(navController = navController)
+                    }
+                    composable("${NavDestinations.DETAIL_SCREEN}/{blogId}") {
+                        it.arguments?.getString("blogId")?.toInt()?.let { blogId ->
+                            DetailsScreen(id = blogId, navController = navController)
+                        }
+                    }
 
+                }
             }
         }
     }
 }
+
