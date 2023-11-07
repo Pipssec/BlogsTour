@@ -3,7 +3,7 @@ package com.blogstour.app.ui.screen.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.blogstour.app.ui.model.testModel.TestModel
+import com.blogstour.app.ui.model.testModel.UiContentForScreen
 import com.blogstour.app.ui.model.uimainrequestmodel.UiContent
 import com.blogstour.app.ui.model.uimainrequestmodel.UiMainRequest
 import com.blogstour.app.util.AppException
@@ -15,6 +15,7 @@ import com.blogstour.domain.usecase.GetListStandartContentUseCase
 import com.blogstour.domain.usecase.GetListToursContentUseCase
 import com.blogstour.domain.usecase.GetMainContentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,15 +36,24 @@ class HomeScreenViewModel @Inject constructor(
     private val _state = MutableStateFlow<Lce<UiMainRequest>>(Lce.Loading)
     val state = _state.asStateFlow()
 
-    private val _contentState = MutableStateFlow<List<TestModel>>(emptyList())
+    private val _contentState = MutableStateFlow<List<UiContentForScreen>>(emptyList())
     val contentState = _contentState.asStateFlow()
 
-    private var _listMenuItems = ArrayList<TestModel>()
+    private var _listMenuItems = ArrayList<UiContentForScreen>()
     private var listContents: List<UiContent> = mutableListOf()
 
 
+    private val coroutineExceptionHandler =
+        CoroutineExceptionHandler { _, throwable ->
+            viewModelScope.launch {
+                handleError(throwable)
+            }
+        }
+    private suspend fun handleError(error: Throwable) {
+        _state.emit(Lce.Error(AppException.NetworkException(error.toString())))
+    }
     init {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(coroutineExceptionHandler + Dispatchers.IO) {
 
             _state.value = Lce.Loading
 
@@ -71,9 +81,9 @@ class HomeScreenViewModel @Inject constructor(
                         ?.let { mapperContentList(it) }
                 }
 
-                if (resultContent != null) {
+                if (resultContent?.data != null) {
                     _listMenuItems.add(
-                        TestModel(
+                        UiContentForScreen(
                             name = item.title,
                             content = resultContent.data,
                             type = item.template.type

@@ -8,6 +8,7 @@ import com.blogstour.app.util.Lce
 import com.blogstour.app.util.mapper.DetailContentDomainToUiMapper
 import com.blogstour.domain.usecase.GetDetailContentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,7 +24,18 @@ class DetailsScreenViewModel @Inject constructor(
     private val _state = MutableStateFlow<Lce<UiDetailContent>>(Lce.Loading)
     val state = _state.asStateFlow()
 
-    fun getContent(id: Int) = viewModelScope.launch(Dispatchers.IO) {
+    private val coroutineExceptionHandler =
+        CoroutineExceptionHandler { _, throwable ->
+            viewModelScope.launch {
+                handleError(throwable)
+            }
+
+        }
+    private suspend fun handleError(error: Throwable) {
+        _state.emit(Lce.Error(AppException.NetworkException(error.toString())))
+    }
+
+    fun getContent(id: Int) = viewModelScope.launch(coroutineExceptionHandler + Dispatchers.IO) {
 
         _state.value = Lce.Loading
 

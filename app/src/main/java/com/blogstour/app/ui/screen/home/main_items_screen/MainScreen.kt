@@ -23,16 +23,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.SubcomposeAsyncImage
-import com.blogstour.app.ui.model.testModel.TestModel
+import com.blogstour.app.app.navigation.NavDestinations
+import com.blogstour.app.ui.model.testModel.UiContentForScreen
 import com.blogstour.app.ui.model.uicontentlistmodel.UiData
-import com.blogstour.app.util.NavDestinations
 
 
 @Composable
 fun MenuItemsScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
-    item: TestModel,
+    item: UiContentForScreen,
 ) {
     Column(
         modifier = modifier

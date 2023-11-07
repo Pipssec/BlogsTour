@@ -1,4 +1,4 @@
-package com.blogstour.app.util
+package com.blogstour.app.app.navigation
 
 object NavDestinations {
     const val MAIN_SCREEN = "MAIN_SCREEN"

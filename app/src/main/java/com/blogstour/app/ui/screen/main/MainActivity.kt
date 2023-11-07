@@ -9,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import com.blogstour.app.ui.screen.details.DetailsScreen
 import com.blogstour.app.ui.screen.home.HomeScreen
 import com.blogstour.app.ui.theme.BlogsTourTheme
-import com.blogstour.app.util.NavDestinations
+import com.blogstour.app.app.navigation.NavDestinations
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

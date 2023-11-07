@@ -81,9 +81,10 @@ fun DetailsScreenContent(
         }
 
         is Lce.Error -> {
+            val item = (state as Lce.Error).exception
             val context = LocalContext.current
             Toast.makeText(
-                context, "Error", Toast.LENGTH_SHORT
+                context, item.toString(), Toast.LENGTH_SHORT
             ).show()
         }
 

@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.blogstour.app.R
-import com.blogstour.app.ui.model.testModel.TestModel
+import com.blogstour.app.ui.model.testModel.UiContentForScreen
 import com.blogstour.app.ui.model.uimainrequestmodel.UiMainRequest
 import com.blogstour.app.ui.navigation_bar.BottomNavigationBar
 import com.blogstour.app.ui.screen.AppScreen
@@ -79,7 +79,7 @@ fun HomeScreenContent(
     modifier: Modifier = Modifier,
     state: Lce<UiMainRequest>,
     navController : NavController,
-    content: List<TestModel>
+    content: List<UiContentForScreen>
 ) {
     when (state) {
         is Lce.Content -> {
@@ -97,9 +97,10 @@ fun HomeScreenContent(
         }
 
         is Lce.Error -> {
+            val item = state.exception
             val context = LocalContext.current
             Toast.makeText(
-                context, "Error", Toast.LENGTH_SHORT
+                context, item.toString(), Toast.LENGTH_LONG
             ).show()
         }
 
@@ -115,14 +116,13 @@ fun HomeScreenContent(
             }
         }
     }
-//    HomeItem()
 }
 
 @Composable
 fun HomeItem(
     modifier: Modifier = Modifier,
     items: UiMainRequest,
-    content: List<TestModel>,
+    content: List<UiContentForScreen>,
     navController : NavController,
 ) {
     Column {
